@@ -36,7 +36,11 @@ class ChatRepository(
     suspend fun displayName(chat: Chat, myUid: String): String {
         val altri = chat.partecipanti.filter { it != myUid }
         if (altri.isEmpty()) return chat.tipo
-        return altri.joinToString(" e ") { userName(it) }
+        val nomi = mutableListOf<String>()
+        for (uid in altri) {
+            nomi.add(userName(uid))
+        }
+        return nomi.joinToString(" e ")
     }
 
     fun messagesFlow(chatId: String): Flow<List<Message>> = callbackFlow {
