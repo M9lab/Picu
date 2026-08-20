@@ -20,6 +20,11 @@ jobs:
           distribution: temurin
           java-version: "17"
 
+      - name: Write local.properties (codice famiglia)
+        env:
+          PICU_FAMILY_CODE: ${{ secrets.PICU_FAMILY_CODE }}
+        run: echo "PICU_FAMILY_CODE=$PICU_FAMILY_CODE" >> local.properties
+
       - name: Build debug APK
         run: |
           chmod +x gradlew
