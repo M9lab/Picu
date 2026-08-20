@@ -1,0 +1,29 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    match /users/{userId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn() && request.auth.uid == userId;
+    }
+
+    match /chats/{chatId} {
+      // Le chat vengono create solo dall'admin (script/console), mai dal client.
+      allow read: if isSignedIn() && request.auth.uid in resource.data.partecipanti;
+      allow write: if false;
+
+      match /messages/{messageId} {
+        allow read: if isSignedIn()
+          && request.auth.uid in get(/databases/$(database)/documents/chats/$(chatId)).data.partecipanti;
+        allow create: if isSignedIn()
+          && request.auth.uid in get(/databases/$(database)/documents/chats/$(chatId)).data.partecipanti
+          && request.resource.data.mittente == request.auth.uid;
+        allow update, delete: if false;
+      }
+    }
+  }
+}

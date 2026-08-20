@@ -1,0 +1,43 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- sfondo -->
+    <path
+        android:fillColor="#BEE3F8"
+        android:pathData="M0,0L108,0L108,108L0,108Z" />
+
+    <!-- corpo pinguino -->
+    <path
+        android:fillColor="#26333F"
+        android:pathData="M54,18C40,18 30,30 28,45C26,55 26,65 30,75C34,88 44,96 54,96C64,96 74,88 78,75C82,65 82,55 80,45C78,30 68,18 54,18Z" />
+
+    <!-- pancia bianca -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,50C46,50 40,58 40,72C40,85 46,94 54,94C62,94 68,85 68,72C68,58 62,50 54,50Z" />
+
+    <!-- piedi -->
+    <path
+        android:fillColor="#FFA726"
+        android:pathData="M37,94a7,4 0 1,0 14,0a7,4 0 1,0 -14,0Z" />
+    <path
+        android:fillColor="#FFA726"
+        android:pathData="M57,94a7,4 0 1,0 14,0a7,4 0 1,0 -14,0Z" />
+
+    <!-- becco -->
+    <path
+        android:fillColor="#FFA726"
+        android:pathData="M49,44L59,44L54,52Z" />
+
+    <!-- occhi -->
+    <path
+        android:fillColor="#111111"
+        android:pathData="M40,38a4,4 0 1,0 8,0a4,4 0 1,0 -8,0Z" />
+    <path
+        android:fillColor="#111111"
+        android:pathData="M60,38a4,4 0 1,0 8,0a4,4 0 1,0 -8,0Z" />
+
+</vector>

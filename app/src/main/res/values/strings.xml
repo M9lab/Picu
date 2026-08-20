@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Picu</string>
+    <string name="default_notification_channel_id">picu_messages</string>
+</resources>

@@ -1,0 +1,27 @@
+# Android / Gradle
+*.iml
+.gradle/
+/local.properties
+.idea/
+.DS_Store
+/build
+/app/build
+/captures
+.externalNativeBuild
+.cxx
+*.apk
+*.aab
+
+# Firebase (contengono chiavi specifiche del vostro progetto reale)
+google-services.json
+app/google-services.json
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+
+# Cloud Functions
+functions/node_modules/
+functions/.env
+
+# Script di setup (contiene la chiave dell'account di servizio)
+scripts/serviceAccountKey.json
