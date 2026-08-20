@@ -12,9 +12,9 @@
 *.apk
 *.aab
 
-# Firebase (contengono chiavi specifiche del vostro progetto reale)
-google-services.json
-app/google-services.json
+# Firebase
+# google-services.json È COMMITTATO DI PROPOSITO (repo privato) per farlo
+# vedere alla build automatica su GitHub Actions.
 .firebase/
 firebase-debug.log
 firebase-debug.*.log

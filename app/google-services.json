@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "580504061673",
+    "project_id": "picu-73ae9",
+    "storage_bucket": "picu-73ae9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:580504061673:android:62387b658b5f6a9a511278",
+        "android_client_info": {
+          "package_name": "com.picu.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_WCiG-J7LTiqt52NYVhDi7N6M1fr_2rc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
