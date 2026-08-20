@@ -26,6 +26,19 @@ android {
         buildConfigField("String", "FAMILY_CODE", "\"$familyCode\"")
     }
 
+    signingConfigs {
+        getByName("debug") {
+            // Chiave fissa e committata (non è un segreto: serve solo a firmare
+            // sempre allo stesso modo le build di debug, così ogni nuovo APK
+            // scaricato aggiorna quello già installato invece di scontrarsi
+            // con una firma diversa e dare "app non installata").
+            storeFile = rootProject.file("keystore/debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
