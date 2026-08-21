@@ -12,7 +12,7 @@ service cloud.firestore {
     }
 
     match /chats/{chatId} {
-      // Le chat vengono create solo dall'admin (script/console), mai dal client.
+      // Le chat vengono create solo dal backend (Cloud Function onUserProfileWritten), mai dal client.
       allow read: if isSignedIn() && request.auth.uid in resource.data.partecipanti;
       allow write: if false;
 

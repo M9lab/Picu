@@ -1,4 +1,4 @@
-const { onDocumentCreated } = require("firebase-functions/v2/firestore");
+const { onDocumentCreated, onDocumentWritten } = require("firebase-functions/v2/firestore");
 const { onValueWritten } = require("firebase-functions/v2/database");
 const { initializeApp } = require("firebase-admin/app");
 const { getFirestore } = require("firebase-admin/firestore");
@@ -40,6 +40,43 @@ exports.onNewMessage = onDocumentCreated(
       },
       data: { chatId },
     });
+  }
+);
+
+/**
+ * Quando bambino, mamma e babbo hanno tutti fatto il primo accesso, crea
+ * automaticamente le tre chat di famiglia (sostituisce lo script manuale
+ * scripts/create-chats.js).
+ */
+exports.onUserProfileWritten = onDocumentWritten(
+  "users/{uid}",
+  async (event) => {
+    if (!event.data.after.exists) return;
+
+    const snapshot = await db.collection("users").get();
+    const byRole = {};
+    snapshot.forEach((doc) => {
+      byRole[doc.data().ruolo] = doc.id;
+    });
+
+    const bambino = byRole["BAMBINO"];
+    const mamma = byRole["MAMMA"];
+    const babbo = byRole["BABBO"];
+    if (!bambino || !mamma || !babbo) return;
+
+    const chats = [
+      { id: "bambino-mamma", tipo: "bambino-mamma", partecipanti: [bambino, mamma] },
+      { id: "bambino-babbo", tipo: "bambino-babbo", partecipanti: [bambino, babbo] },
+      { id: "famiglia", tipo: "bambino-mamma-babbo", partecipanti: [bambino, mamma, babbo] },
+    ];
+
+    for (const chat of chats) {
+      const ref = db.collection("chats").doc(chat.id);
+      const existing = await ref.get();
+      if (!existing.exists) {
+        await ref.set(chat);
+      }
+    }
   }
 );
 
